@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "zero_shot": {
+      "name": "Zero-Shot LLM",
+      "fault_category_accuracy_pct": 60.0,
+      "root_cause_precision_pct": 40.0,
+      "hallucination_rate_pct": 100.0,
+      "remediation_accuracy_pct": 20.0,
+      "avg_tool_calls_per_run": 0.0
+    },
+    "rag": {
+      "name": "Static RAG + LLM",
+      "fault_category_accuracy_pct": 40.0,
+      "root_cause_precision_pct": 10.0,
+      "hallucination_rate_pct": 30.0,
+      "remediation_accuracy_pct": 70.0,
+      "avg_tool_calls_per_run": 0.0
+    },
+    "proposed_agent": {
+      "name": "Proposed Tool-Using Agent",
+      "fault_category_accuracy_pct": 90.0,
+      "root_cause_precision_pct": 100.0,
+      "hallucination_rate_pct": 0.0,
+      "remediation_accuracy_pct": 90.0,
+      "avg_tool_calls_per_run": 2.0
+    }
+  },
+  "per_scenario": [
+    {
+      "scenario_id": "NET-SCN-001",
+      "fault_class": "Interface State",
+      "agent_steps": 3,
+      "agent_tool_calls": 3,
+      "agent_diagnosis": "Interface State",
+      "agent_root_cause": "Switch port 's1-eth3' is in state DOWN; physical link severed.",
+      "agent_remediation": "ip link set dev s1-eth3 up"
+    },
+    {
+      "scenario_id": "NET-SCN-002",
+      "fault_class": "Routing Table",
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
+      "agent_diagnosis": "Routing Table",
+      "agent_root_cause": "Missing default gateway via 10.0.0.1 on node h2; routing table lacks default route.",
+      "agent_remediation": "ip route add default via 10.0.0.1 dev h2-eth0"
+    },
+    {
+      "scenario_id": "NET-SCN-003",
+      "fault_class": "Channel Impairment",
+      "agent_steps": 1,
+      "agent_tool_calls": 1,
+      "agent_diagnosis": "Channel Impairment",
+      "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+    },
+    {
+      "scenario_id": "NET-SCN-004",
+      "fault_class": "Name Resolution",
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
+      "agent_diagnosis": "Name Resolution",
+      "agent_root_cause": "Host h3 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.0.0.99'.",
+      "agent_remediation": "echo 'nameserver 10.0.0.254' > /etc/resolv.conf"
+    },
+    {
+      "scenario_id": "NET-SCN-005",
+      "fault_class": "Interface State",
+      "agent_steps": 3,
+      "agent_tool_calls": 3,
+      "agent_diagnosis": "Interface State",
+      "agent_root_cause": "Switch port 's1-eth2' is in state DOWN; physical link severed.",
+      "agent_remediation": "ip link set dev s1-eth2 up"
+    },
+    {
+      "scenario_id": "NET-SCN-006",
+      "fault_class": "Routing Table",
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
+      "agent_diagnosis": "Routing Table",
+      "agent_root_cause": "Missing default gateway via 10.0.0.1 on node h1; routing table lacks default route.",
+      "agent_remediation": "ip route add default via 10.0.0.1 dev h1-eth0"
+    },
+    {
+      "scenario_id": "NET-SCN-007",
+      "fault_class": "MTU Mismatch",
+      "agent_steps": 1,
+      "agent_tool_calls": 1,
+      "agent_diagnosis": "Channel Impairment",
+      "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+    },
+    {
+      "scenario_id": "NET-SCN-008",
+      "fault_class": "Channel Impairment",
+      "agent_steps": 1,
+      "agent_tool_calls": 1,
+      "agent_diagnosis": "Channel Impairment",
+      "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+    },
+    {
+      "scenario_id": "NET-SCN-009",
+      "fault_class": "Name Resolution",
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
+      "agent_diagnosis": "Name Resolution",
+      "agent_root_cause": "Host h1 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '192.168.1.1'.",
+      "agent_remediation": "echo 'nameserver 10.0.0.254' > /etc/resolv.conf"
+    },
+    {
+      "scenario_id": "NET-SCN-010",
+      "fault_class": "Interface State",
+      "agent_steps": 3,
+      "agent_tool_calls": 3,
+      "agent_diagnosis": "Interface State",
+      "agent_root_cause": "Switch port 's1-eth4' is in state DOWN; physical link severed.",
+      "agent_remediation": "ip link set dev s1-eth4 up"
+    }
+  ]
+}

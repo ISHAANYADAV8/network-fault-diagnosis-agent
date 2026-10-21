@@ -1,0 +1,159 @@
+{
+  "topology_metadata": {
+    "name": "DTU-Enterprise-Sandboxed-Topology",
+    "description": "Standardized Mininet virtual network: 2 switches (s1, s2), 4 hosts (h1-h4), 1 DNS server (dns1), and 1 gateway router (gw1).",
+    "version": "1.1.0"
+  },
+  "subnets": [
+    {
+      "name": "Corporate-LAN",
+      "cidr": "10.0.0.0/24",
+      "gateway": "10.0.0.1",
+      "dns": "10.0.0.254"
+    },
+    {
+      "name": "External-WAN-Services",
+      "cidr": "10.0.1.0/24",
+      "gateway": "10.0.0.1"
+    }
+  ],
+  "nodes": {
+    "h1": {
+      "type": "host",
+      "subnet": "10.0.0.0/24",
+      "ip": "10.0.0.10",
+      "netmask": "255.255.255.0",
+      "mac": "00:00:00:00:00:01",
+      "default_gateway": "10.0.0.1",
+      "dns_server": "10.0.0.254",
+      "interfaces": {
+        "h1-eth0": {
+          "ip": "10.0.0.10",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s1-eth1"
+        }
+      }
+    },
+    "h2": {
+      "type": "host",
+      "subnet": "10.0.0.0/24",
+      "ip": "10.0.0.20",
+      "netmask": "255.255.255.0",
+      "mac": "00:00:00:00:00:02",
+      "default_gateway": "10.0.0.1",
+      "dns_server": "10.0.0.254",
+      "interfaces": {
+        "h2-eth0": {
+          "ip": "10.0.0.20",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s1-eth2"
+        }
+      }
+    },
+    "h3": {
+      "type": "host",
+      "subnet": "10.0.0.0/24",
+      "ip": "10.0.0.30",
+      "netmask": "255.255.255.0",
+      "mac": "00:00:00:00:00:03",
+      "default_gateway": "10.0.0.1",
+      "dns_server": "10.0.0.254",
+      "interfaces": {
+        "h3-eth0": {
+          "ip": "10.0.0.30",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s2-eth1"
+        }
+      }
+    },
+    "h4": {
+      "type": "host",
+      "subnet": "10.0.0.0/24",
+      "ip": "10.0.0.40",
+      "netmask": "255.255.255.0",
+      "mac": "00:00:00:00:00:04",
+      "default_gateway": "10.0.0.1",
+      "dns_server": "10.0.0.254",
+      "interfaces": {
+        "h4-eth0": {
+          "ip": "10.0.0.40",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s2-eth2"
+        }
+      }
+    },
+    "dns1": {
+      "type": "server",
+      "subnet": "10.0.0.0/24",
+      "ip": "10.0.0.254",
+      "netmask": "255.255.255.0",
+      "mac": "00:00:00:00:00:fe",
+      "default_gateway": "10.0.0.1",
+      "interfaces": {
+        "dns1-eth0": {
+          "ip": "10.0.0.254",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s1-eth5"
+        }
+      }
+    },
+    "s1": {
+      "type": "switch",
+      "interfaces": {
+        "s1-eth1": { "status": "UP", "mtu": 1500, "connected_to": "h1-eth0" },
+        "s1-eth2": { "status": "UP", "mtu": 1500, "connected_to": "h2-eth0" },
+        "s1-eth3": { "status": "UP", "mtu": 1500, "connected_to": "s2-eth3" },
+        "s1-eth4": { "status": "UP", "mtu": 1500, "connected_to": "gw1-eth1" },
+        "s1-eth5": { "status": "UP", "mtu": 1500, "connected_to": "dns1-eth0" }
+      }
+    },
+    "s2": {
+      "type": "switch",
+      "interfaces": {
+        "s2-eth1": { "status": "UP", "mtu": 1500, "connected_to": "h3-eth0" },
+        "s2-eth2": { "status": "UP", "mtu": 1500, "connected_to": "h4-eth0" },
+        "s2-eth3": { "status": "UP", "mtu": 1500, "connected_to": "s1-eth3" }
+      }
+    },
+    "gw1": {
+      "type": "router",
+      "ip": "10.0.0.1",
+      "interfaces": {
+        "gw1-eth1": {
+          "ip": "10.0.0.1",
+          "netmask": "255.255.255.0",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "s1-eth4"
+        }
+      },
+      "routing_table": [
+        { "destination": "10.0.0.0/24", "gateway": "0.0.0.0", "interface": "gw1-eth1" },
+        { "destination": "10.0.1.0/24", "gateway": "10.0.1.254", "interface": "wan0" }
+      ]
+    }
+  },
+  "links": [
+    { "node_a": "h1", "port_a": "h1-eth0", "node_b": "s1", "port_b": "s1-eth1", "status": "UP", "delay_ms": 1, "loss_pct": 0 },
+    { "node_a": "h2", "port_a": "h2-eth0", "node_b": "s1", "port_b": "s1-eth2", "status": "UP", "delay_ms": 1, "loss_pct": 0 },
+    { "node_a": "s1", "port_a": "s1-eth3", "node_b": "s2", "port_b": "s2-eth3", "status": "UP", "delay_ms": 2, "loss_pct": 0 },
+    { "node_a": "s1", "port_a": "s1-eth4", "node_b": "gw1", "port_b": "gw1-eth1", "status": "UP", "delay_ms": 1, "loss_pct": 0 },
+    { "node_a": "dns1", "port_a": "dns1-eth0", "node_b": "s1", "port_b": "s1-eth5", "status": "UP", "delay_ms": 1, "loss_pct": 0 },
+    { "node_a": "h3", "port_a": "h3-eth0", "node_b": "s2", "port_b": "s2-eth1", "status": "UP", "delay_ms": 1, "loss_pct": 0 },
+    { "node_a": "h4", "port_a": "h4-eth0", "node_b": "s2", "port_b": "s2-eth2", "status": "UP", "delay_ms": 1, "loss_pct": 0 }
+  ],
+  "dns_records": {
+    "app.corp.local": "10.0.0.40",
+    "db.corp.local": "10.0.0.30",
+    "gateway.corp.local": "10.0.0.1",
+    "dns.corp.local": "10.0.0.254"
+  },
+  "external_endpoints": {
+    "10.0.1.254": { "description": "Upstream WAN Service Target", "hops_after_gw": 2, "base_rtt_ms": 12.0 }
+  }
+}

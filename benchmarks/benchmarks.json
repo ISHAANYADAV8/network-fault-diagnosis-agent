@@ -1,0 +1,155 @@
+[
+  {
+    "scenario_id": "NET-SCN-001",
+    "fault_class": "Interface State",
+    "symptom": "Host h1 unable to reach application service at Host h4 (10.0.0.40)",
+    "target_node": "h1",
+    "destination": "10.0.0.40",
+    "injected_fault": "Switch s1 port eth3 administrative down",
+    "fault_parameters": {
+      "node_id": "s1",
+      "port": "s1-eth3"
+    },
+    "ground_truth_root_cause": "Port s1-eth3 is DOWN; inter-switch trunk severed between switch s1 and s2.",
+    "remediation": "ip link set dev s1-eth3 up",
+    "verification_cmd": "ping_tool('h1', '10.0.0.40')"
+  },
+  {
+    "scenario_id": "NET-SCN-002",
+    "fault_class": "Routing Table",
+    "symptom": "Host h2 ping to WAN service at 10.0.1.254 fails with 'connect: Network is unreachable'",
+    "target_node": "h2",
+    "destination": "10.0.1.254",
+    "injected_fault": "Default gateway route stripped from host h2 routing table",
+    "fault_parameters": {
+      "node_id": "h2"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.0.0.1 on node h2.",
+    "remediation": "ip route add default via 10.0.0.1 dev h2-eth0",
+    "verification_cmd": "ping_tool('h2', '10.0.1.254')"
+  },
+  {
+    "scenario_id": "NET-SCN-003",
+    "fault_class": "Channel Impairment",
+    "symptom": "Host h1 reports severe degraded performance, high latency variance, and heavy packet drop when communicating with h2 (10.0.0.20)",
+    "target_node": "h1",
+    "destination": "10.0.0.20",
+    "injected_fault": "Severe synthetic jitter and packet loss via NetEm on s1-eth1",
+    "fault_parameters": {
+      "node_a": "s1",
+      "port_a": "s1-eth1",
+      "loss_pct": 35.0,
+      "delay_ms": 180.0
+    },
+    "ground_truth_root_cause": "Traffic control queuing discipline (NetEm) impairment on port s1-eth1 causing 35% packet loss and 180ms delay.",
+    "remediation": "tc qdisc del dev s1-eth1 root",
+    "verification_cmd": "ping_tool('h1', '10.0.0.20')"
+  },
+  {
+    "scenario_id": "NET-SCN-004",
+    "fault_class": "Name Resolution",
+    "symptom": "Host h3 can ping IP addresses directly, but hostname resolution for 'app.corp.local' times out",
+    "target_node": "h3",
+    "destination": "app.corp.local",
+    "injected_fault": "Misconfigured resolver pointing /etc/resolv.conf to unreachable IP 10.0.0.99",
+    "fault_parameters": {
+      "node_id": "h3",
+      "invalid_ip": "10.0.0.99"
+    },
+    "ground_truth_root_cause": "Misconfigured nameserver IP in /etc/resolv.conf on host h3 pointing to unreachable address 10.0.0.99.",
+    "remediation": "echo 'nameserver 10.0.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h3', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "NET-SCN-005",
+    "fault_class": "Interface State",
+    "symptom": "Host h2 has complete loss of connectivity; cannot ping local gateway (10.0.0.1) or any other host",
+    "target_node": "h2",
+    "destination": "10.0.0.1",
+    "injected_fault": "Switch port s1-eth2 administrative down",
+    "fault_parameters": {
+      "node_id": "s1",
+      "port": "s1-eth2"
+    },
+    "ground_truth_root_cause": "Port s1-eth2 is DOWN; access link connecting host h2 to switch s1 is severed.",
+    "remediation": "ip link set dev s1-eth2 up",
+    "verification_cmd": "ping_tool('h2', '10.0.0.1')"
+  },
+  {
+    "scenario_id": "NET-SCN-006",
+    "fault_class": "Routing Table",
+    "symptom": "Host h1 can ping local hosts (h2, h4), but cannot reach upstream service at 10.0.1.254",
+    "target_node": "h1",
+    "destination": "10.0.1.254",
+    "injected_fault": "Default gateway route stripped from host h1 routing table",
+    "fault_parameters": {
+      "node_id": "h1"
+    },
+    "ground_truth_root_cause": "Missing default route via 10.0.0.1 on node h1.",
+    "remediation": "ip route add default via 10.0.0.1 dev h1-eth0",
+    "verification_cmd": "ping_tool('h1', '10.0.1.254')"
+  },
+  {
+    "scenario_id": "NET-SCN-007",
+    "fault_class": "MTU Mismatch",
+    "symptom": "Host h1 experiences packet fragmentation issues and MTU misconfiguration on its primary interface",
+    "target_node": "h1",
+    "destination": "10.0.0.20",
+    "injected_fault": "Interface h1-eth0 MTU reduced to 1200",
+    "fault_parameters": {
+      "node_id": "h1",
+      "port": "h1-eth0",
+      "small_mtu": 1200
+    },
+    "ground_truth_root_cause": "Subnet MTU mismatch; interface h1-eth0 configured with MTU 1200 instead of standard 1500.",
+    "remediation": "ip link set dev h1-eth0 mtu 1500",
+    "verification_cmd": "interface_stats_tool('h1')"
+  },
+  {
+    "scenario_id": "NET-SCN-008",
+    "fault_class": "Channel Impairment",
+    "symptom": "Inter-switch communications between h1 and h3 (10.0.0.30) exhibit packet drop and high RTT latency",
+    "target_node": "h1",
+    "destination": "10.0.0.30",
+    "injected_fault": "Synthetic NetEm impairment on trunk port s1-eth3 with 25% loss and 120ms delay",
+    "fault_parameters": {
+      "node_a": "s1",
+      "port_a": "s1-eth3",
+      "loss_pct": 25.0,
+      "delay_ms": 120.0
+    },
+    "ground_truth_root_cause": "NetEm synthetic impairment configured on inter-switch trunk port s1-eth3 with 25% loss and 120ms delay.",
+    "remediation": "tc qdisc del dev s1-eth3 root",
+    "verification_cmd": "ping_tool('h1', '10.0.0.30')"
+  },
+  {
+    "scenario_id": "NET-SCN-009",
+    "fault_class": "Name Resolution",
+    "symptom": "Host h1 ping to 10.0.0.40 succeeds, but nslookup app.corp.local fails with connection timeout",
+    "target_node": "h1",
+    "destination": "app.corp.local",
+    "injected_fault": "Invalid nameserver IP 192.168.1.1 configured in /etc/resolv.conf on host h1",
+    "fault_parameters": {
+      "node_id": "h1",
+      "invalid_ip": "192.168.1.1"
+    },
+    "ground_truth_root_cause": "Invalid nameserver IP configured in /etc/resolv.conf on host h1 pointing to 192.168.1.1.",
+    "remediation": "echo 'nameserver 10.0.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h1', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "NET-SCN-010",
+    "fault_class": "Interface State",
+    "symptom": "Internal host-to-host traffic works, but all hosts are unable to reach default gateway 10.0.0.1 or external WAN 10.0.1.254",
+    "target_node": "h1",
+    "destination": "10.0.0.1",
+    "injected_fault": "Gateway uplink port s1-eth4 set to administrative down",
+    "fault_parameters": {
+      "node_id": "s1",
+      "port": "s1-eth4"
+    },
+    "ground_truth_root_cause": "Switch port s1-eth4 connecting to gateway router gw1 is DOWN.",
+    "remediation": "ip link set dev s1-eth4 up",
+    "verification_cmd": "ping_tool('h1', '10.0.0.1')"
+  }
+]
