@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoNet RCA Agent - Topology-Aware Network Diagnosis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">🌐</div>
+      <div>
+        <h1>AutoNet RCA Agent</h1>
+        <p style="font-size: 0.76rem; color: var(--text-dim);">Topology-Aware Network Fault Diagnosis • DTU Group 067</p>
+      </div>
+      <span class="brand-badge">B.Tech IT-401</span>
+    </div>
+
+    <div class="header-status">
+      <div class="pulse-indicator">
+        <span class="pulse-dot" id="system-status-dot"></span>
+        <span id="system-status-text">Network Sandbox Healthy</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scenario Controller & Action Bar -->
+  <section class="control-bar">
+    <div class="scenario-picker">
+      <label for="scenario-select">Active Incident:</label>
+      <select id="scenario-select" class="custom-select">
+        <option value="" disabled selected>Loading benchmark scenarios...</option>
+      </select>
+    </div>
+
+    <div class="action-buttons">
+      <button id="btn-inject" class="btn btn-danger" title="Inject the selected failure into the sandbox">
+        <span>⚡</span> Inject Fault
+      </button>
+      <button id="btn-diagnose" class="btn btn-primary" title="Trigger autonomous ReAct reasoning loop">
+        <span>🤖</span> Run Autonomous Agent
+      </button>
+      <button id="btn-remediate" class="btn btn-success" title="Execute exact CLI remediation command">
+        <span>🔧</span> Auto-Remediate
+      </button>
+      <button id="btn-reset" class="btn btn-outline" title="Reset network to pristine baseline">
+        <span>🔄</span> Reset
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Workspace Grid -->
+  <main class="workspace-grid">
+    
+    <!-- Left: Topology Visualizer Panel -->
+    <section class="topology-section glass-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span>🗺️</span>
+          <span>Controlled Network Topology Graph</span>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-dim);" id="topo-summary-badge">
+          2 Switches • 4 Hosts • 1 Router • 1 DNS
+        </div>
+      </div>
+
+      <div class="topology-canvas-container" id="canvas-container">
+        <!-- Dynamic SVG rendered via JavaScript -->
+        <svg id="topology-svg" viewBox="0 0 850 540">
+          <defs>
+            <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glow-danger" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g id="svg-links-layer"></g>
+          <g id="svg-nodes-layer"></g>
+        </svg>
+
+        <!-- Floating Node/Link Detail Inspector -->
+        <div id="inspector-popup" class="node-inspector-popup">
+          <h4 id="inspector-title">Node Inspector</h4>
+          <div id="inspector-rows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: ReAct Agent Terminal & RCA Report Card -->
+    <section class="agent-section">
+      
+      <!-- Terminal Console -->
+      <div class="terminal-card glass-panel">
+        <div class="terminal-header">
+          <div class="mac-dots">
+            <span class="mac-dot dot-red"></span>
+            <span class="mac-dot dot-yellow"></span>
+            <span class="mac-dot dot-green"></span>
+          </div>
+          <span class="terminal-title">agent_react_trace.log</span>
+          <span style="font-size: 0.72rem; color: var(--accent-cyan);" id="step-counter-badge">Step 0/6</span>
+        </div>
+        
+        <div class="terminal-body" id="terminal-body">
+          <div style="color: var(--text-dim);">
+            [System initialized] Ready for incident diagnosis.<br>
+            Select a scenario above and click <span style="color: var(--accent-crimson); font-weight:600;">Inject Fault</span> followed by <span style="color: var(--accent-cyan); font-weight:600;">Run Autonomous Agent</span>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Synthesized RCA Report Card -->
+      <div class="rca-card glass-panel" id="rca-card">
+        <div>
+          <div class="rca-header">
+            <span style="font-weight: 700; font-size: 0.95rem;">Synthesized RCA Report</span>
+            <span class="rca-badge" id="rca-badge-status">Awaiting Diagnosis</span>
+          </div>
+
+          <div class="rca-content">
+            <div class="rca-row">
+              <strong>Diagnosed Fault Category</strong>
+              <span id="rca-category" style="color: var(--text-main); font-weight: 600;">--</span>
+            </div>
+            <div class="rca-row">
+              <strong>Root Cause Finding</strong>
+              <span id="rca-root-cause" style="color: var(--text-muted);">Run agent to isolate root cause.</span>
+            </div>
+            <div class="rca-row">
+              <strong>Recommended Actionable Fix</strong>
+              <div class="remediation-box">
+                <code id="rca-remediation">--</code>
+                <button id="btn-copy-fix" style="background:transparent; border:none; color:var(--text-dim); cursor:pointer;" title="Copy to clipboard">📋</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); padding-top: 0.5rem; border-top: 1px solid var(--border-subtle);">
+          <span>Tool Calls: <strong id="rca-tool-calls" style="color: var(--text-main);">0</strong></span>
+          <span>Hallucinations: <strong id="rca-hallucinations" style="color: var(--accent-emerald);">0</strong></span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Bottom: Empirical Performance Metrics Section -->
+  <section class="metrics-section">
+    <div class="metrics-grid">
+      <div class="metric-card glass-panel">
+        <div class="metric-title">Diagnostic Accuracy</div>
+        <div class="metric-value" style="color: var(--accent-cyan);">90.0%</div>
+        <div class="metric-desc">vs. 40.0% unassisted baseline</div>
+      </div>
+
+      <div class="metric-card glass-panel success">
+        <div class="metric-title">Root Cause Precision</div>
+        <div class="metric-value" style="color: var(--accent-emerald);">100.0%</div>
+        <div class="metric-desc">Evidence-backed telemetry match</div>
+      </div>
+
+      <div class="metric-card glass-panel">
+        <div class="metric-title">Hallucination Rate</div>
+        <div class="metric-value" style="color: #a78bfa;">0.0%</div>
+        <div class="metric-desc">Topology-constrained anti-hallucination</div>
+      </div>
+
+      <div class="metric-card glass-panel">
+        <div class="metric-title">Avg. Tool Invocations</div>
+        <div class="metric-value" style="color: var(--accent-amber);">2.0</div>
+        <div class="metric-desc">Well within 6-step constraint budget</div>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
