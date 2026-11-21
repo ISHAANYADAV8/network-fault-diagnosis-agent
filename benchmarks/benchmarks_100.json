@@ -1,0 +1,1627 @@
+[
+  {
+    "scenario_id": "SCN-SCALE-001",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h1 reports complete loss of connectivity to h5 (10.2.0.15)",
+    "target_node": "h1",
+    "destination": "10.2.0.15",
+    "injected_fault": "Interface h1-eth0 on h1 administrative down",
+    "fault_parameters": {
+      "node_id": "h1",
+      "port": "h1-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h1-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h1-eth0 up",
+    "verification_cmd": "ping_tool('h1', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-002",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h2 reports complete loss of connectivity to h6 (10.2.0.16)",
+    "target_node": "h2",
+    "destination": "10.2.0.16",
+    "injected_fault": "Interface c2-eth1 on c2 administrative down",
+    "fault_parameters": {
+      "node_id": "c2",
+      "port": "c2-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'c2-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev c2-eth1 up",
+    "verification_cmd": "ping_tool('h2', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-003",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h3 reports complete loss of connectivity to h7 (10.3.0.17)",
+    "target_node": "h3",
+    "destination": "10.3.0.17",
+    "injected_fault": "Interface h3-eth0 on h3 administrative down",
+    "fault_parameters": {
+      "node_id": "h3",
+      "port": "h3-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h3-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h3-eth0 up",
+    "verification_cmd": "ping_tool('h3', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-004",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h4 reports complete loss of connectivity to h8 (10.3.0.18)",
+    "target_node": "h4",
+    "destination": "10.3.0.18",
+    "injected_fault": "Interface d1-eth1 on d1 administrative down",
+    "fault_parameters": {
+      "node_id": "d1",
+      "port": "d1-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd1-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d1-eth1 up",
+    "verification_cmd": "ping_tool('h4', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-005",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h5 reports complete loss of connectivity to h9 (10.3.0.19)",
+    "target_node": "h5",
+    "destination": "10.3.0.19",
+    "injected_fault": "Interface h5-eth0 on h5 administrative down",
+    "fault_parameters": {
+      "node_id": "h5",
+      "port": "h5-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h5-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h5-eth0 up",
+    "verification_cmd": "ping_tool('h5', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-006",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 reports complete loss of connectivity to h10 (10.4.0.20)",
+    "target_node": "h6",
+    "destination": "10.4.0.20",
+    "injected_fault": "Interface d2-eth1 on d2 administrative down",
+    "fault_parameters": {
+      "node_id": "d2",
+      "port": "d2-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd2-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d2-eth1 up",
+    "verification_cmd": "ping_tool('h6', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-007",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h7 reports complete loss of connectivity to h11 (10.4.0.21)",
+    "target_node": "h7",
+    "destination": "10.4.0.21",
+    "injected_fault": "Interface h7-eth0 on h7 administrative down",
+    "fault_parameters": {
+      "node_id": "h7",
+      "port": "h7-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h7-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h7-eth0 up",
+    "verification_cmd": "ping_tool('h7', '10.4.0.21')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-008",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h8 reports complete loss of connectivity to h12 (10.4.0.22)",
+    "target_node": "h8",
+    "destination": "10.4.0.22",
+    "injected_fault": "Interface d3-eth1 on d3 administrative down",
+    "fault_parameters": {
+      "node_id": "d3",
+      "port": "d3-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd3-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d3-eth1 up",
+    "verification_cmd": "ping_tool('h8', '10.4.0.22')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-009",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h9 reports complete loss of connectivity to h1 (10.1.0.11)",
+    "target_node": "h9",
+    "destination": "10.1.0.11",
+    "injected_fault": "Interface h9-eth0 on h9 administrative down",
+    "fault_parameters": {
+      "node_id": "h9",
+      "port": "h9-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h9-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h9-eth0 up",
+    "verification_cmd": "ping_tool('h9', '10.1.0.11')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-010",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h10 reports complete loss of connectivity to h2 (10.1.0.12)",
+    "target_node": "h10",
+    "destination": "10.1.0.12",
+    "injected_fault": "Interface d4-eth1 on d4 administrative down",
+    "fault_parameters": {
+      "node_id": "d4",
+      "port": "d4-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd4-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d4-eth1 up",
+    "verification_cmd": "ping_tool('h10', '10.1.0.12')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-011",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h11 reports complete loss of connectivity to h3 (10.1.0.13)",
+    "target_node": "h11",
+    "destination": "10.1.0.13",
+    "injected_fault": "Interface h11-eth0 on h11 administrative down",
+    "fault_parameters": {
+      "node_id": "h11",
+      "port": "h11-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h11-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h11-eth0 up",
+    "verification_cmd": "ping_tool('h11', '10.1.0.13')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-012",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h12 reports complete loss of connectivity to h4 (10.2.0.14)",
+    "target_node": "h12",
+    "destination": "10.2.0.14",
+    "injected_fault": "Interface a1-eth1 on a1 administrative down",
+    "fault_parameters": {
+      "node_id": "a1",
+      "port": "a1-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a1-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a1-eth1 up",
+    "verification_cmd": "ping_tool('h12', '10.2.0.14')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-013",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h1 reports complete loss of connectivity to h5 (10.2.0.15)",
+    "target_node": "h1",
+    "destination": "10.2.0.15",
+    "injected_fault": "Interface h1-eth0 on h1 administrative down",
+    "fault_parameters": {
+      "node_id": "h1",
+      "port": "h1-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h1-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h1-eth0 up",
+    "verification_cmd": "ping_tool('h1', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-014",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h2 reports complete loss of connectivity to h6 (10.2.0.16)",
+    "target_node": "h2",
+    "destination": "10.2.0.16",
+    "injected_fault": "Interface a2-eth1 on a2 administrative down",
+    "fault_parameters": {
+      "node_id": "a2",
+      "port": "a2-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a2-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a2-eth1 up",
+    "verification_cmd": "ping_tool('h2', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-015",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h3 reports complete loss of connectivity to h7 (10.3.0.17)",
+    "target_node": "h3",
+    "destination": "10.3.0.17",
+    "injected_fault": "Interface h3-eth0 on h3 administrative down",
+    "fault_parameters": {
+      "node_id": "h3",
+      "port": "h3-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h3-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h3-eth0 up",
+    "verification_cmd": "ping_tool('h3', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-016",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h4 reports complete loss of connectivity to h8 (10.3.0.18)",
+    "target_node": "h4",
+    "destination": "10.3.0.18",
+    "injected_fault": "Interface a3-eth1 on a3 administrative down",
+    "fault_parameters": {
+      "node_id": "a3",
+      "port": "a3-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a3-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a3-eth1 up",
+    "verification_cmd": "ping_tool('h4', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-017",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h5 reports complete loss of connectivity to h9 (10.3.0.19)",
+    "target_node": "h5",
+    "destination": "10.3.0.19",
+    "injected_fault": "Interface h5-eth0 on h5 administrative down",
+    "fault_parameters": {
+      "node_id": "h5",
+      "port": "h5-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h5-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h5-eth0 up",
+    "verification_cmd": "ping_tool('h5', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-018",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h6 reports complete loss of connectivity to h10 (10.4.0.20)",
+    "target_node": "h6",
+    "destination": "10.4.0.20",
+    "injected_fault": "Interface a4-eth1 on a4 administrative down",
+    "fault_parameters": {
+      "node_id": "a4",
+      "port": "a4-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a4-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a4-eth1 up",
+    "verification_cmd": "ping_tool('h6', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-019",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h7 reports complete loss of connectivity to h11 (10.4.0.21)",
+    "target_node": "h7",
+    "destination": "10.4.0.21",
+    "injected_fault": "Interface h7-eth0 on h7 administrative down",
+    "fault_parameters": {
+      "node_id": "h7",
+      "port": "h7-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h7-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h7-eth0 up",
+    "verification_cmd": "ping_tool('h7', '10.4.0.21')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-020",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h8 reports complete loss of connectivity to h12 (10.4.0.22)",
+    "target_node": "h8",
+    "destination": "10.4.0.22",
+    "injected_fault": "Interface a5-eth1 on a5 administrative down",
+    "fault_parameters": {
+      "node_id": "a5",
+      "port": "a5-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a5-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a5-eth1 up",
+    "verification_cmd": "ping_tool('h8', '10.4.0.22')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-021",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h9 reports complete loss of connectivity to h1 (10.1.0.11)",
+    "target_node": "h9",
+    "destination": "10.1.0.11",
+    "injected_fault": "Interface h9-eth0 on h9 administrative down",
+    "fault_parameters": {
+      "node_id": "h9",
+      "port": "h9-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h9-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h9-eth0 up",
+    "verification_cmd": "ping_tool('h9', '10.1.0.11')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-022",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h10 reports complete loss of connectivity to h2 (10.1.0.12)",
+    "target_node": "h10",
+    "destination": "10.1.0.12",
+    "injected_fault": "Interface a6-eth1 on a6 administrative down",
+    "fault_parameters": {
+      "node_id": "a6",
+      "port": "a6-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'a6-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev a6-eth1 up",
+    "verification_cmd": "ping_tool('h10', '10.1.0.12')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-023",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h11 reports complete loss of connectivity to h3 (10.1.0.13)",
+    "target_node": "h11",
+    "destination": "10.1.0.13",
+    "injected_fault": "Interface h11-eth0 on h11 administrative down",
+    "fault_parameters": {
+      "node_id": "h11",
+      "port": "h11-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h11-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h11-eth0 up",
+    "verification_cmd": "ping_tool('h11', '10.1.0.13')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-024",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h12 reports complete loss of connectivity to h4 (10.2.0.14)",
+    "target_node": "h12",
+    "destination": "10.2.0.14",
+    "injected_fault": "Interface c1-eth1 on c1 administrative down",
+    "fault_parameters": {
+      "node_id": "c1",
+      "port": "c1-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'c1-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev c1-eth1 up",
+    "verification_cmd": "ping_tool('h12', '10.2.0.14')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-025",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h1 reports complete loss of connectivity to h5 (10.2.0.15)",
+    "target_node": "h1",
+    "destination": "10.2.0.15",
+    "injected_fault": "Interface h1-eth0 on h1 administrative down",
+    "fault_parameters": {
+      "node_id": "h1",
+      "port": "h1-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h1-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h1-eth0 up",
+    "verification_cmd": "ping_tool('h1', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-026",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h2 reports complete loss of connectivity to h6 (10.2.0.16)",
+    "target_node": "h2",
+    "destination": "10.2.0.16",
+    "injected_fault": "Interface c2-eth1 on c2 administrative down",
+    "fault_parameters": {
+      "node_id": "c2",
+      "port": "c2-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'c2-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev c2-eth1 up",
+    "verification_cmd": "ping_tool('h2', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-027",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h3 reports complete loss of connectivity to h7 (10.3.0.17)",
+    "target_node": "h3",
+    "destination": "10.3.0.17",
+    "injected_fault": "Interface h3-eth0 on h3 administrative down",
+    "fault_parameters": {
+      "node_id": "h3",
+      "port": "h3-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h3-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h3-eth0 up",
+    "verification_cmd": "ping_tool('h3', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-028",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h4 reports complete loss of connectivity to h8 (10.3.0.18)",
+    "target_node": "h4",
+    "destination": "10.3.0.18",
+    "injected_fault": "Interface d1-eth1 on d1 administrative down",
+    "fault_parameters": {
+      "node_id": "d1",
+      "port": "d1-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd1-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d1-eth1 up",
+    "verification_cmd": "ping_tool('h4', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-029",
+    "fault_class": "Interface State",
+    "difficulty": "Simple",
+    "symptom": "Host h5 reports complete loss of connectivity to h9 (10.3.0.19)",
+    "target_node": "h5",
+    "destination": "10.3.0.19",
+    "injected_fault": "Interface h5-eth0 on h5 administrative down",
+    "fault_parameters": {
+      "node_id": "h5",
+      "port": "h5-eth0"
+    },
+    "ground_truth_root_cause": "Local host interface 'h5-eth0' is in state DOWN.",
+    "remediation": "ip link set dev h5-eth0 up",
+    "verification_cmd": "ping_tool('h5', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-030",
+    "fault_class": "Interface State",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 reports complete loss of connectivity to h10 (10.4.0.20)",
+    "target_node": "h6",
+    "destination": "10.4.0.20",
+    "injected_fault": "Interface d2-eth1 on d2 administrative down",
+    "fault_parameters": {
+      "node_id": "d2",
+      "port": "d2-eth1"
+    },
+    "ground_truth_root_cause": "Switch port 'd2-eth1' is DOWN; trunk link severed.",
+    "remediation": "ip link set dev d2-eth1 up",
+    "verification_cmd": "ping_tool('h6', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-031",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h1 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h1",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h1",
+    "fault_parameters": {
+      "node_id": "h1"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h1; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h1-eth0",
+    "verification_cmd": "ping_tool('h1', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-032",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h2 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h2",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h2",
+    "fault_parameters": {
+      "node_id": "h2"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h2; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h2-eth0",
+    "verification_cmd": "ping_tool('h2', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-033",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h3 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h3",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h3",
+    "fault_parameters": {
+      "node_id": "h3"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h3; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h3-eth0",
+    "verification_cmd": "ping_tool('h3', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-034",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h4 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h4",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h4",
+    "fault_parameters": {
+      "node_id": "h4"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h4; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h4-eth0",
+    "verification_cmd": "ping_tool('h4', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-035",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h5 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h5",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h5",
+    "fault_parameters": {
+      "node_id": "h5"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h5; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h5-eth0",
+    "verification_cmd": "ping_tool('h5', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-036",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h6",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h6",
+    "fault_parameters": {
+      "node_id": "h6"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h6; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h6-eth0",
+    "verification_cmd": "ping_tool('h6', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-037",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h7 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h7",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h7",
+    "fault_parameters": {
+      "node_id": "h7"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h7; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h7-eth0",
+    "verification_cmd": "ping_tool('h7', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-038",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h8 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h8",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h8",
+    "fault_parameters": {
+      "node_id": "h8"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h8; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h8-eth0",
+    "verification_cmd": "ping_tool('h8', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-039",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h9 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h9",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h9",
+    "fault_parameters": {
+      "node_id": "h9"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h9; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h9-eth0",
+    "verification_cmd": "ping_tool('h9', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-040",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h10 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h10",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h10",
+    "fault_parameters": {
+      "node_id": "h10"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h10; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h10-eth0",
+    "verification_cmd": "ping_tool('h10', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-041",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h11 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h11",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h11",
+    "fault_parameters": {
+      "node_id": "h11"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h11; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h11-eth0",
+    "verification_cmd": "ping_tool('h11', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-042",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h12 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h12",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h12",
+    "fault_parameters": {
+      "node_id": "h12"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h12; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h12-eth0",
+    "verification_cmd": "ping_tool('h12', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-043",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h1 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h1",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h1",
+    "fault_parameters": {
+      "node_id": "h1"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h1; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h1-eth0",
+    "verification_cmd": "ping_tool('h1', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-044",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h2 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h2",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h2",
+    "fault_parameters": {
+      "node_id": "h2"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h2; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h2-eth0",
+    "verification_cmd": "ping_tool('h2', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-045",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h3 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h3",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h3",
+    "fault_parameters": {
+      "node_id": "h3"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h3; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h3-eth0",
+    "verification_cmd": "ping_tool('h3', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-046",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h4 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h4",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h4",
+    "fault_parameters": {
+      "node_id": "h4"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h4; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h4-eth0",
+    "verification_cmd": "ping_tool('h4', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-047",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h5 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h5",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h5",
+    "fault_parameters": {
+      "node_id": "h5"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h5; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h5-eth0",
+    "verification_cmd": "ping_tool('h5', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-048",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h6",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h6",
+    "fault_parameters": {
+      "node_id": "h6"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.2.0.1 on node h6; routing table lacks default route.",
+    "remediation": "ip route add default via 10.2.0.1 dev h6-eth0",
+    "verification_cmd": "ping_tool('h6', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-049",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h7 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h7",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h7",
+    "fault_parameters": {
+      "node_id": "h7"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h7; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h7-eth0",
+    "verification_cmd": "ping_tool('h7', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-050",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h8 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h8",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h8",
+    "fault_parameters": {
+      "node_id": "h8"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h8; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h8-eth0",
+    "verification_cmd": "ping_tool('h8', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-051",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h9 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h9",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h9",
+    "fault_parameters": {
+      "node_id": "h9"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.3.0.1 on node h9; routing table lacks default route.",
+    "remediation": "ip route add default via 10.3.0.1 dev h9-eth0",
+    "verification_cmd": "ping_tool('h9', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-052",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h10 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h10",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h10",
+    "fault_parameters": {
+      "node_id": "h10"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h10; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h10-eth0",
+    "verification_cmd": "ping_tool('h10', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-053",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h11 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h11",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h11",
+    "fault_parameters": {
+      "node_id": "h11"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h11; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h11-eth0",
+    "verification_cmd": "ping_tool('h11', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-054",
+    "fault_class": "Routing Table",
+    "difficulty": "Difficult",
+    "symptom": "Host h12 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h12",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h12",
+    "fault_parameters": {
+      "node_id": "h12"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.4.0.1 on node h12; routing table lacks default route.",
+    "remediation": "ip route add default via 10.4.0.1 dev h12-eth0",
+    "verification_cmd": "ping_tool('h12', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-055",
+    "fault_class": "Routing Table",
+    "difficulty": "Simple",
+    "symptom": "Host h1 cannot reach WAN service at 10.4.0.254; kernel reports Network is unreachable",
+    "target_node": "h1",
+    "destination": "10.4.0.254",
+    "injected_fault": "Default gateway route deleted on node h1",
+    "fault_parameters": {
+      "node_id": "h1"
+    },
+    "ground_truth_root_cause": "Missing default gateway via 10.1.0.1 on node h1; routing table lacks default route.",
+    "remediation": "ip route add default via 10.1.0.1 dev h1-eth0",
+    "verification_cmd": "ping_tool('h1', '10.4.0.254')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-056",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h1 reports heavy latency jitter (100.0ms) and 20.0% packet drop to h3 (10.1.0.13)",
+    "target_node": "h1",
+    "destination": "10.1.0.13",
+    "injected_fault": "NetEm delay 100.0ms and loss 20.0% injected on c1-eth1",
+    "fault_parameters": {
+      "node_a": "c1",
+      "port_a": "c1-eth1",
+      "loss_pct": 20.0,
+      "delay_ms": 100.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev c1-eth1 root",
+    "verification_cmd": "ping_tool('h1', '10.1.0.13')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-057",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h2 reports heavy latency jitter (120.0ms) and 25.0% packet drop to h4 (10.2.0.14)",
+    "target_node": "h2",
+    "destination": "10.2.0.14",
+    "injected_fault": "NetEm delay 120.0ms and loss 25.0% injected on c2-eth1",
+    "fault_parameters": {
+      "node_a": "c2",
+      "port_a": "c2-eth1",
+      "loss_pct": 25.0,
+      "delay_ms": 120.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev c2-eth1 root",
+    "verification_cmd": "ping_tool('h2', '10.2.0.14')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-058",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h3 reports heavy latency jitter (140.0ms) and 30.0% packet drop to h5 (10.2.0.15)",
+    "target_node": "h3",
+    "destination": "10.2.0.15",
+    "injected_fault": "NetEm delay 140.0ms and loss 30.0% injected on d1-eth1",
+    "fault_parameters": {
+      "node_a": "d1",
+      "port_a": "d1-eth1",
+      "loss_pct": 30.0,
+      "delay_ms": 140.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d1-eth1 root",
+    "verification_cmd": "ping_tool('h3', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-059",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h4 reports heavy latency jitter (160.0ms) and 35.0% packet drop to h6 (10.2.0.16)",
+    "target_node": "h4",
+    "destination": "10.2.0.16",
+    "injected_fault": "NetEm delay 160.0ms and loss 35.0% injected on d2-eth1",
+    "fault_parameters": {
+      "node_a": "d2",
+      "port_a": "d2-eth1",
+      "loss_pct": 35.0,
+      "delay_ms": 160.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d2-eth1 root",
+    "verification_cmd": "ping_tool('h4', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-060",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h5 reports heavy latency jitter (180.0ms) and 15.0% packet drop to h7 (10.3.0.17)",
+    "target_node": "h5",
+    "destination": "10.3.0.17",
+    "injected_fault": "NetEm delay 180.0ms and loss 15.0% injected on d3-eth1",
+    "fault_parameters": {
+      "node_a": "d3",
+      "port_a": "d3-eth1",
+      "loss_pct": 15.0,
+      "delay_ms": 180.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d3-eth1 root",
+    "verification_cmd": "ping_tool('h5', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-061",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 reports heavy latency jitter (80.0ms) and 20.0% packet drop to h8 (10.3.0.18)",
+    "target_node": "h6",
+    "destination": "10.3.0.18",
+    "injected_fault": "NetEm delay 80.0ms and loss 20.0% injected on d4-eth1",
+    "fault_parameters": {
+      "node_a": "d4",
+      "port_a": "d4-eth1",
+      "loss_pct": 20.0,
+      "delay_ms": 80.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d4-eth1 root",
+    "verification_cmd": "ping_tool('h6', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-062",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h7 reports heavy latency jitter (100.0ms) and 25.0% packet drop to h9 (10.3.0.19)",
+    "target_node": "h7",
+    "destination": "10.3.0.19",
+    "injected_fault": "NetEm delay 100.0ms and loss 25.0% injected on a1-eth1",
+    "fault_parameters": {
+      "node_a": "a1",
+      "port_a": "a1-eth1",
+      "loss_pct": 25.0,
+      "delay_ms": 100.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a1-eth1 root",
+    "verification_cmd": "ping_tool('h7', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-063",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h8 reports heavy latency jitter (120.0ms) and 30.0% packet drop to h10 (10.4.0.20)",
+    "target_node": "h8",
+    "destination": "10.4.0.20",
+    "injected_fault": "NetEm delay 120.0ms and loss 30.0% injected on a2-eth1",
+    "fault_parameters": {
+      "node_a": "a2",
+      "port_a": "a2-eth1",
+      "loss_pct": 30.0,
+      "delay_ms": 120.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a2-eth1 root",
+    "verification_cmd": "ping_tool('h8', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-064",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h9 reports heavy latency jitter (140.0ms) and 35.0% packet drop to h11 (10.4.0.21)",
+    "target_node": "h9",
+    "destination": "10.4.0.21",
+    "injected_fault": "NetEm delay 140.0ms and loss 35.0% injected on a3-eth1",
+    "fault_parameters": {
+      "node_a": "a3",
+      "port_a": "a3-eth1",
+      "loss_pct": 35.0,
+      "delay_ms": 140.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a3-eth1 root",
+    "verification_cmd": "ping_tool('h9', '10.4.0.21')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-065",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h10 reports heavy latency jitter (160.0ms) and 15.0% packet drop to h12 (10.4.0.22)",
+    "target_node": "h10",
+    "destination": "10.4.0.22",
+    "injected_fault": "NetEm delay 160.0ms and loss 15.0% injected on a4-eth1",
+    "fault_parameters": {
+      "node_a": "a4",
+      "port_a": "a4-eth1",
+      "loss_pct": 15.0,
+      "delay_ms": 160.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a4-eth1 root",
+    "verification_cmd": "ping_tool('h10', '10.4.0.22')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-066",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h11 reports heavy latency jitter (180.0ms) and 20.0% packet drop to h1 (10.1.0.11)",
+    "target_node": "h11",
+    "destination": "10.1.0.11",
+    "injected_fault": "NetEm delay 180.0ms and loss 20.0% injected on a5-eth1",
+    "fault_parameters": {
+      "node_a": "a5",
+      "port_a": "a5-eth1",
+      "loss_pct": 20.0,
+      "delay_ms": 180.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a5-eth1 root",
+    "verification_cmd": "ping_tool('h11', '10.1.0.11')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-067",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h12 reports heavy latency jitter (80.0ms) and 25.0% packet drop to h2 (10.1.0.12)",
+    "target_node": "h12",
+    "destination": "10.1.0.12",
+    "injected_fault": "NetEm delay 80.0ms and loss 25.0% injected on a6-eth1",
+    "fault_parameters": {
+      "node_a": "a6",
+      "port_a": "a6-eth1",
+      "loss_pct": 25.0,
+      "delay_ms": 80.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a6-eth1 root",
+    "verification_cmd": "ping_tool('h12', '10.1.0.12')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-068",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h1 reports heavy latency jitter (100.0ms) and 30.0% packet drop to h3 (10.1.0.13)",
+    "target_node": "h1",
+    "destination": "10.1.0.13",
+    "injected_fault": "NetEm delay 100.0ms and loss 30.0% injected on c1-eth1",
+    "fault_parameters": {
+      "node_a": "c1",
+      "port_a": "c1-eth1",
+      "loss_pct": 30.0,
+      "delay_ms": 100.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev c1-eth1 root",
+    "verification_cmd": "ping_tool('h1', '10.1.0.13')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-069",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h2 reports heavy latency jitter (120.0ms) and 35.0% packet drop to h4 (10.2.0.14)",
+    "target_node": "h2",
+    "destination": "10.2.0.14",
+    "injected_fault": "NetEm delay 120.0ms and loss 35.0% injected on c2-eth1",
+    "fault_parameters": {
+      "node_a": "c2",
+      "port_a": "c2-eth1",
+      "loss_pct": 35.0,
+      "delay_ms": 120.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev c2-eth1 root",
+    "verification_cmd": "ping_tool('h2', '10.2.0.14')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-070",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h3 reports heavy latency jitter (140.0ms) and 15.0% packet drop to h5 (10.2.0.15)",
+    "target_node": "h3",
+    "destination": "10.2.0.15",
+    "injected_fault": "NetEm delay 140.0ms and loss 15.0% injected on d1-eth1",
+    "fault_parameters": {
+      "node_a": "d1",
+      "port_a": "d1-eth1",
+      "loss_pct": 15.0,
+      "delay_ms": 140.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d1-eth1 root",
+    "verification_cmd": "ping_tool('h3', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-071",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h4 reports heavy latency jitter (160.0ms) and 20.0% packet drop to h6 (10.2.0.16)",
+    "target_node": "h4",
+    "destination": "10.2.0.16",
+    "injected_fault": "NetEm delay 160.0ms and loss 20.0% injected on d2-eth1",
+    "fault_parameters": {
+      "node_a": "d2",
+      "port_a": "d2-eth1",
+      "loss_pct": 20.0,
+      "delay_ms": 160.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d2-eth1 root",
+    "verification_cmd": "ping_tool('h4', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-072",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h5 reports heavy latency jitter (180.0ms) and 25.0% packet drop to h7 (10.3.0.17)",
+    "target_node": "h5",
+    "destination": "10.3.0.17",
+    "injected_fault": "NetEm delay 180.0ms and loss 25.0% injected on d3-eth1",
+    "fault_parameters": {
+      "node_a": "d3",
+      "port_a": "d3-eth1",
+      "loss_pct": 25.0,
+      "delay_ms": 180.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d3-eth1 root",
+    "verification_cmd": "ping_tool('h5', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-073",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 reports heavy latency jitter (80.0ms) and 30.0% packet drop to h8 (10.3.0.18)",
+    "target_node": "h6",
+    "destination": "10.3.0.18",
+    "injected_fault": "NetEm delay 80.0ms and loss 30.0% injected on d4-eth1",
+    "fault_parameters": {
+      "node_a": "d4",
+      "port_a": "d4-eth1",
+      "loss_pct": 30.0,
+      "delay_ms": 80.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev d4-eth1 root",
+    "verification_cmd": "ping_tool('h6', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-074",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h7 reports heavy latency jitter (100.0ms) and 35.0% packet drop to h9 (10.3.0.19)",
+    "target_node": "h7",
+    "destination": "10.3.0.19",
+    "injected_fault": "NetEm delay 100.0ms and loss 35.0% injected on a1-eth1",
+    "fault_parameters": {
+      "node_a": "a1",
+      "port_a": "a1-eth1",
+      "loss_pct": 35.0,
+      "delay_ms": 100.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a1-eth1 root",
+    "verification_cmd": "ping_tool('h7', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-075",
+    "fault_class": "Channel Impairment",
+    "difficulty": "Difficult",
+    "symptom": "Host h8 reports heavy latency jitter (120.0ms) and 15.0% packet drop to h10 (10.4.0.20)",
+    "target_node": "h8",
+    "destination": "10.4.0.20",
+    "injected_fault": "NetEm delay 120.0ms and loss 15.0% injected on a2-eth1",
+    "fault_parameters": {
+      "node_a": "a2",
+      "port_a": "a2-eth1",
+      "loss_pct": 15.0,
+      "delay_ms": 120.0
+    },
+    "ground_truth_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+    "remediation": "tc qdisc del dev a2-eth1 root",
+    "verification_cmd": "ping_tool('h8', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-076",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h1 can ping IP addresses directly, but hostname resolution for 'app.corp.local' times out",
+    "target_node": "h1",
+    "destination": "app.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.1 configured in /etc/resolv.conf on h1",
+    "fault_parameters": {
+      "node_id": "h1",
+      "invalid_ip": "10.99.0.1"
+    },
+    "ground_truth_root_cause": "Host h1 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.1'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h1', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-077",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h2 can ping IP addresses directly, but hostname resolution for 'db.internal.local' times out",
+    "target_node": "h2",
+    "destination": "db.internal.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.2 configured in /etc/resolv.conf on h2",
+    "fault_parameters": {
+      "node_id": "h2",
+      "invalid_ip": "10.99.0.2"
+    },
+    "ground_truth_root_cause": "Host h2 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.2'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h2', 'db.internal.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-078",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h3 can ping IP addresses directly, but hostname resolution for 'auth.corp.local' times out",
+    "target_node": "h3",
+    "destination": "auth.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.3 configured in /etc/resolv.conf on h3",
+    "fault_parameters": {
+      "node_id": "h3",
+      "invalid_ip": "10.99.0.3"
+    },
+    "ground_truth_root_cause": "Host h3 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.3'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h3', 'auth.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-079",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h4 can ping IP addresses directly, but hostname resolution for 'api.gateway.local' times out",
+    "target_node": "h4",
+    "destination": "api.gateway.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.4 configured in /etc/resolv.conf on h4",
+    "fault_parameters": {
+      "node_id": "h4",
+      "invalid_ip": "10.99.0.4"
+    },
+    "ground_truth_root_cause": "Host h4 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.4'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h4', 'api.gateway.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-080",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h5 can ping IP addresses directly, but hostname resolution for 'app.corp.local' times out",
+    "target_node": "h5",
+    "destination": "app.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.5 configured in /etc/resolv.conf on h5",
+    "fault_parameters": {
+      "node_id": "h5",
+      "invalid_ip": "10.99.0.5"
+    },
+    "ground_truth_root_cause": "Host h5 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.5'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h5', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-081",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h6 can ping IP addresses directly, but hostname resolution for 'db.internal.local' times out",
+    "target_node": "h6",
+    "destination": "db.internal.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.6 configured in /etc/resolv.conf on h6",
+    "fault_parameters": {
+      "node_id": "h6",
+      "invalid_ip": "10.99.0.6"
+    },
+    "ground_truth_root_cause": "Host h6 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.6'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h6', 'db.internal.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-082",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h7 can ping IP addresses directly, but hostname resolution for 'auth.corp.local' times out",
+    "target_node": "h7",
+    "destination": "auth.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.7 configured in /etc/resolv.conf on h7",
+    "fault_parameters": {
+      "node_id": "h7",
+      "invalid_ip": "10.99.0.7"
+    },
+    "ground_truth_root_cause": "Host h7 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.7'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h7', 'auth.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-083",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h8 can ping IP addresses directly, but hostname resolution for 'api.gateway.local' times out",
+    "target_node": "h8",
+    "destination": "api.gateway.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.8 configured in /etc/resolv.conf on h8",
+    "fault_parameters": {
+      "node_id": "h8",
+      "invalid_ip": "10.99.0.8"
+    },
+    "ground_truth_root_cause": "Host h8 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.8'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h8', 'api.gateway.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-084",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h9 can ping IP addresses directly, but hostname resolution for 'app.corp.local' times out",
+    "target_node": "h9",
+    "destination": "app.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.9 configured in /etc/resolv.conf on h9",
+    "fault_parameters": {
+      "node_id": "h9",
+      "invalid_ip": "10.99.0.9"
+    },
+    "ground_truth_root_cause": "Host h9 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.9'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h9', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-085",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h10 can ping IP addresses directly, but hostname resolution for 'db.internal.local' times out",
+    "target_node": "h10",
+    "destination": "db.internal.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.10 configured in /etc/resolv.conf on h10",
+    "fault_parameters": {
+      "node_id": "h10",
+      "invalid_ip": "10.99.0.10"
+    },
+    "ground_truth_root_cause": "Host h10 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.10'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h10', 'db.internal.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-086",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h11 can ping IP addresses directly, but hostname resolution for 'auth.corp.local' times out",
+    "target_node": "h11",
+    "destination": "auth.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.11 configured in /etc/resolv.conf on h11",
+    "fault_parameters": {
+      "node_id": "h11",
+      "invalid_ip": "10.99.0.11"
+    },
+    "ground_truth_root_cause": "Host h11 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.11'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h11', 'auth.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-087",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h12 can ping IP addresses directly, but hostname resolution for 'api.gateway.local' times out",
+    "target_node": "h12",
+    "destination": "api.gateway.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.12 configured in /etc/resolv.conf on h12",
+    "fault_parameters": {
+      "node_id": "h12",
+      "invalid_ip": "10.99.0.12"
+    },
+    "ground_truth_root_cause": "Host h12 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.12'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h12', 'api.gateway.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-088",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h1 can ping IP addresses directly, but hostname resolution for 'app.corp.local' times out",
+    "target_node": "h1",
+    "destination": "app.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.13 configured in /etc/resolv.conf on h1",
+    "fault_parameters": {
+      "node_id": "h1",
+      "invalid_ip": "10.99.0.13"
+    },
+    "ground_truth_root_cause": "Host h1 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.13'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h1', 'app.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-089",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h2 can ping IP addresses directly, but hostname resolution for 'db.internal.local' times out",
+    "target_node": "h2",
+    "destination": "db.internal.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.14 configured in /etc/resolv.conf on h2",
+    "fault_parameters": {
+      "node_id": "h2",
+      "invalid_ip": "10.99.0.14"
+    },
+    "ground_truth_root_cause": "Host h2 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.14'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h2', 'db.internal.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-090",
+    "fault_class": "Name Resolution",
+    "difficulty": "Simple",
+    "symptom": "Host h3 can ping IP addresses directly, but hostname resolution for 'auth.corp.local' times out",
+    "target_node": "h3",
+    "destination": "auth.corp.local",
+    "injected_fault": "Corrupt nameserver IP 10.99.0.15 configured in /etc/resolv.conf on h3",
+    "fault_parameters": {
+      "node_id": "h3",
+      "invalid_ip": "10.99.0.15"
+    },
+    "ground_truth_root_cause": "Host h3 has misconfigured nameserver IP in /etc/resolv.conf pointing to invalid address '10.99.0.15'.",
+    "remediation": "echo 'nameserver 10.3.0.254' > /etc/resolv.conf",
+    "verification_cmd": "dns_query_tool('h3', 'auth.corp.local')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-091",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h1 experiences intermittent packet truncation and fragmentation issues to 10.2.0.14",
+    "target_node": "h1",
+    "destination": "10.2.0.14",
+    "injected_fault": "Interface h1-eth0 MTU reduced to 1300",
+    "fault_parameters": {
+      "node_id": "h1",
+      "port": "h1-eth0",
+      "small_mtu": 1300
+    },
+    "ground_truth_root_cause": "Interface h1-eth0 has MTU 1300 which is below standard 1500.",
+    "remediation": "ip link set dev h1-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h1', '10.2.0.14')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-092",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h2 experiences intermittent packet truncation and fragmentation issues to 10.2.0.15",
+    "target_node": "h2",
+    "destination": "10.2.0.15",
+    "injected_fault": "Interface h2-eth0 MTU reduced to 1400",
+    "fault_parameters": {
+      "node_id": "h2",
+      "port": "h2-eth0",
+      "small_mtu": 1400
+    },
+    "ground_truth_root_cause": "Interface h2-eth0 has MTU 1400 which is below standard 1500.",
+    "remediation": "ip link set dev h2-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h2', '10.2.0.15')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-093",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h3 experiences intermittent packet truncation and fragmentation issues to 10.2.0.16",
+    "target_node": "h3",
+    "destination": "10.2.0.16",
+    "injected_fault": "Interface h3-eth0 MTU reduced to 1200",
+    "fault_parameters": {
+      "node_id": "h3",
+      "port": "h3-eth0",
+      "small_mtu": 1200
+    },
+    "ground_truth_root_cause": "Interface h3-eth0 has MTU 1200 which is below standard 1500.",
+    "remediation": "ip link set dev h3-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h3', '10.2.0.16')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-094",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h4 experiences intermittent packet truncation and fragmentation issues to 10.3.0.17",
+    "target_node": "h4",
+    "destination": "10.3.0.17",
+    "injected_fault": "Interface h4-eth0 MTU reduced to 1300",
+    "fault_parameters": {
+      "node_id": "h4",
+      "port": "h4-eth0",
+      "small_mtu": 1300
+    },
+    "ground_truth_root_cause": "Interface h4-eth0 has MTU 1300 which is below standard 1500.",
+    "remediation": "ip link set dev h4-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h4', '10.3.0.17')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-095",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h5 experiences intermittent packet truncation and fragmentation issues to 10.3.0.18",
+    "target_node": "h5",
+    "destination": "10.3.0.18",
+    "injected_fault": "Interface h5-eth0 MTU reduced to 1400",
+    "fault_parameters": {
+      "node_id": "h5",
+      "port": "h5-eth0",
+      "small_mtu": 1400
+    },
+    "ground_truth_root_cause": "Interface h5-eth0 has MTU 1400 which is below standard 1500.",
+    "remediation": "ip link set dev h5-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h5', '10.3.0.18')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-096",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h6 experiences intermittent packet truncation and fragmentation issues to 10.3.0.19",
+    "target_node": "h6",
+    "destination": "10.3.0.19",
+    "injected_fault": "Interface h6-eth0 MTU reduced to 1200",
+    "fault_parameters": {
+      "node_id": "h6",
+      "port": "h6-eth0",
+      "small_mtu": 1200
+    },
+    "ground_truth_root_cause": "Interface h6-eth0 has MTU 1200 which is below standard 1500.",
+    "remediation": "ip link set dev h6-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h6', '10.3.0.19')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-097",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h7 experiences intermittent packet truncation and fragmentation issues to 10.4.0.20",
+    "target_node": "h7",
+    "destination": "10.4.0.20",
+    "injected_fault": "Interface h7-eth0 MTU reduced to 1300",
+    "fault_parameters": {
+      "node_id": "h7",
+      "port": "h7-eth0",
+      "small_mtu": 1300
+    },
+    "ground_truth_root_cause": "Interface h7-eth0 has MTU 1300 which is below standard 1500.",
+    "remediation": "ip link set dev h7-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h7', '10.4.0.20')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-098",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h8 experiences intermittent packet truncation and fragmentation issues to 10.4.0.21",
+    "target_node": "h8",
+    "destination": "10.4.0.21",
+    "injected_fault": "Interface h8-eth0 MTU reduced to 1400",
+    "fault_parameters": {
+      "node_id": "h8",
+      "port": "h8-eth0",
+      "small_mtu": 1400
+    },
+    "ground_truth_root_cause": "Interface h8-eth0 has MTU 1400 which is below standard 1500.",
+    "remediation": "ip link set dev h8-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h8', '10.4.0.21')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-099",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h9 experiences intermittent packet truncation and fragmentation issues to 10.4.0.22",
+    "target_node": "h9",
+    "destination": "10.4.0.22",
+    "injected_fault": "Interface h9-eth0 MTU reduced to 1200",
+    "fault_parameters": {
+      "node_id": "h9",
+      "port": "h9-eth0",
+      "small_mtu": 1200
+    },
+    "ground_truth_root_cause": "Interface h9-eth0 has MTU 1200 which is below standard 1500.",
+    "remediation": "ip link set dev h9-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h9', '10.4.0.22')"
+  },
+  {
+    "scenario_id": "SCN-SCALE-100",
+    "fault_class": "MTU Mismatch",
+    "difficulty": "Difficult",
+    "symptom": "Host h10 experiences intermittent packet truncation and fragmentation issues to 10.1.0.11",
+    "target_node": "h10",
+    "destination": "10.1.0.11",
+    "injected_fault": "Interface h10-eth0 MTU reduced to 1300",
+    "fault_parameters": {
+      "node_id": "h10",
+      "port": "h10-eth0",
+      "small_mtu": 1300
+    },
+    "ground_truth_root_cause": "Interface h10-eth0 has MTU 1300 which is below standard 1500.",
+    "remediation": "ip link set dev h10-eth0 mtu 1500",
+    "verification_cmd": "ping_tool('h10', '10.1.0.11')"
+  }
+]

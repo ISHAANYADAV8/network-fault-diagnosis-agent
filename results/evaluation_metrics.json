@@ -3,7 +3,7 @@
     "zero_shot": {
       "name": "Zero-Shot LLM",
       "fault_category_accuracy_pct": 60.0,
-      "root_cause_precision_pct": 40.0,
+      "root_cause_precision_pct": 50.0,
       "hallucination_rate_pct": 100.0,
       "remediation_accuracy_pct": 20.0,
       "avg_tool_calls_per_run": 0.0
@@ -12,17 +12,17 @@
       "name": "Static RAG + LLM",
       "fault_category_accuracy_pct": 40.0,
       "root_cause_precision_pct": 10.0,
-      "hallucination_rate_pct": 30.0,
+      "hallucination_rate_pct": 10.0,
       "remediation_accuracy_pct": 70.0,
       "avg_tool_calls_per_run": 0.0
     },
     "proposed_agent": {
       "name": "Proposed Tool-Using Agent",
-      "fault_category_accuracy_pct": 90.0,
+      "fault_category_accuracy_pct": 100.0,
       "root_cause_precision_pct": 100.0,
       "hallucination_rate_pct": 0.0,
-      "remediation_accuracy_pct": 90.0,
-      "avg_tool_calls_per_run": 2.0
+      "remediation_accuracy_pct": 100.0,
+      "avg_tool_calls_per_run": 2.3
     }
   },
   "per_scenario": [
@@ -47,11 +47,11 @@
     {
       "scenario_id": "NET-SCN-003",
       "fault_class": "Channel Impairment",
-      "agent_steps": 1,
-      "agent_tool_calls": 1,
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
       "agent_diagnosis": "Channel Impairment",
       "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
-      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+      "agent_remediation": "tc qdisc del dev h1-eth0 root"
     },
     {
       "scenario_id": "NET-SCN-004",
@@ -83,20 +83,20 @@
     {
       "scenario_id": "NET-SCN-007",
       "fault_class": "MTU Mismatch",
-      "agent_steps": 1,
-      "agent_tool_calls": 1,
-      "agent_diagnosis": "Channel Impairment",
-      "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
-      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
+      "agent_diagnosis": "MTU Mismatch",
+      "agent_root_cause": "Interface h1-eth0 has MTU 1200 which is below standard 1500.",
+      "agent_remediation": "ip link set dev h1-eth0 mtu 1500"
     },
     {
       "scenario_id": "NET-SCN-008",
       "fault_class": "Channel Impairment",
-      "agent_steps": 1,
-      "agent_tool_calls": 1,
+      "agent_steps": 2,
+      "agent_tool_calls": 2,
       "agent_diagnosis": "Channel Impairment",
       "agent_root_cause": "Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
-      "agent_remediation": "tc qdisc del dev s1-eth1 root"
+      "agent_remediation": "tc qdisc del dev s1-eth3 root"
     },
     {
       "scenario_id": "NET-SCN-009",

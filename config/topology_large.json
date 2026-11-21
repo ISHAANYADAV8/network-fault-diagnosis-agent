@@ -1,0 +1,895 @@
+{
+  "topology_metadata": {
+    "name": "DTU-Enterprise-MultiTier-Campus",
+    "description": "Multi-tier scalable campus network with 2 Core, 4 Dist, 6 Access switches, 2 Gateways, and 12 Hosts.",
+    "total_nodes": 28,
+    "total_links": 37,
+    "version": "2.0.0"
+  },
+  "subnets": [
+    {
+      "name": "Engineering-LAN",
+      "cidr": "10.1.0.0/24",
+      "gateway": "10.1.0.1",
+      "dns": "10.3.0.254"
+    },
+    {
+      "name": "Operations-LAN",
+      "cidr": "10.2.0.0/24",
+      "gateway": "10.2.0.1",
+      "dns": "10.3.0.254"
+    },
+    {
+      "name": "DataCenter-Servers",
+      "cidr": "10.3.0.0/24",
+      "gateway": "10.3.0.1",
+      "dns": "10.3.0.254"
+    },
+    {
+      "name": "External-WAN",
+      "cidr": "10.4.0.0/24",
+      "gateway": "10.4.0.1"
+    }
+  ],
+  "nodes": {
+    "gw1": {
+      "type": "router",
+      "ip": "10.1.0.1",
+      "interfaces": {
+        "gw1-eth1": {
+          "ip": "10.1.0.1",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c1-eth1"
+        },
+        "gw1-eth2": {
+          "ip": "10.2.0.1",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c2-eth1"
+        },
+        "gw1-eth3": {
+          "ip": "10.3.0.1",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c1-eth2"
+        }
+      }
+    },
+    "gw2": {
+      "type": "router",
+      "ip": "10.4.0.1",
+      "interfaces": {
+        "gw2-eth1": {
+          "ip": "10.4.0.1",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c2-eth2"
+        }
+      }
+    },
+    "c1": {
+      "type": "switch",
+      "interfaces": {
+        "c1-eth1": {
+          "status": "UP",
+          "connected_to": "gw1-eth1"
+        },
+        "c1-eth2": {
+          "status": "UP",
+          "connected_to": "gw1-eth3"
+        },
+        "c1-eth3": {
+          "status": "UP",
+          "connected_to": "c2-eth3"
+        },
+        "c1-eth4": {
+          "status": "UP",
+          "connected_to": "d1-eth1"
+        },
+        "c1-eth5": {
+          "status": "UP",
+          "connected_to": "d2-eth1"
+        },
+        "c1-eth6": {
+          "status": "UP",
+          "connected_to": "d3-eth1"
+        }
+      }
+    },
+    "c2": {
+      "type": "switch",
+      "interfaces": {
+        "c2-eth1": {
+          "status": "UP",
+          "connected_to": "gw1-eth2"
+        },
+        "c2-eth2": {
+          "status": "UP",
+          "connected_to": "gw2-eth1"
+        },
+        "c2-eth3": {
+          "status": "UP",
+          "connected_to": "c1-eth3"
+        },
+        "c2-eth4": {
+          "status": "UP",
+          "connected_to": "d2-eth2"
+        },
+        "c2-eth5": {
+          "status": "UP",
+          "connected_to": "d3-eth2"
+        },
+        "c2-eth6": {
+          "status": "UP",
+          "connected_to": "d4-eth1"
+        }
+      }
+    },
+    "d1": {
+      "type": "switch",
+      "interfaces": {
+        "d1-eth1": {
+          "status": "UP",
+          "connected_to": "c1-eth4"
+        },
+        "d1-eth2": {
+          "status": "UP",
+          "connected_to": "a1-eth1"
+        },
+        "d1-eth3": {
+          "status": "UP",
+          "connected_to": "a2-eth2"
+        }
+      }
+    },
+    "d2": {
+      "type": "switch",
+      "interfaces": {
+        "d2-eth1": {
+          "status": "UP",
+          "connected_to": "c1-eth5"
+        },
+        "d2-eth2": {
+          "status": "UP",
+          "connected_to": "a2-eth1"
+        },
+        "d2-eth3": {
+          "status": "UP",
+          "connected_to": "a3-eth2"
+        }
+      }
+    },
+    "d3": {
+      "type": "switch",
+      "interfaces": {
+        "d3-eth1": {
+          "status": "UP",
+          "connected_to": "c1-eth6"
+        },
+        "d3-eth2": {
+          "status": "UP",
+          "connected_to": "a3-eth1"
+        },
+        "d3-eth3": {
+          "status": "UP",
+          "connected_to": "a4-eth2"
+        }
+      }
+    },
+    "d4": {
+      "type": "switch",
+      "interfaces": {
+        "d4-eth1": {
+          "status": "UP",
+          "connected_to": "c2-eth6"
+        },
+        "d4-eth2": {
+          "status": "UP",
+          "connected_to": "a4-eth1"
+        },
+        "d4-eth3": {
+          "status": "UP",
+          "connected_to": "a1-eth2"
+        }
+      }
+    },
+    "a1": {
+      "type": "switch",
+      "interfaces": {
+        "a1-eth1": {
+          "status": "UP",
+          "connected_to": "d1-eth2"
+        },
+        "a1-eth2": {
+          "status": "UP",
+          "connected_to": "d1-eth3"
+        },
+        "a1-eth3": {
+          "status": "UP",
+          "connected_to": "h1-eth0"
+        },
+        "a1-eth4": {
+          "status": "UP",
+          "connected_to": "h2-eth0"
+        }
+      }
+    },
+    "a2": {
+      "type": "switch",
+      "interfaces": {
+        "a2-eth1": {
+          "status": "UP",
+          "connected_to": "d2-eth2"
+        },
+        "a2-eth2": {
+          "status": "UP",
+          "connected_to": "d1-eth3"
+        },
+        "a2-eth3": {
+          "status": "UP",
+          "connected_to": "h3-eth0"
+        },
+        "a2-eth4": {
+          "status": "UP",
+          "connected_to": "h4-eth0"
+        }
+      }
+    },
+    "a3": {
+      "type": "switch",
+      "interfaces": {
+        "a3-eth1": {
+          "status": "UP",
+          "connected_to": "d3-eth2"
+        },
+        "a3-eth2": {
+          "status": "UP",
+          "connected_to": "d2-eth3"
+        },
+        "a3-eth3": {
+          "status": "UP",
+          "connected_to": "h5-eth0"
+        },
+        "a3-eth4": {
+          "status": "UP",
+          "connected_to": "h6-eth0"
+        }
+      }
+    },
+    "a4": {
+      "type": "switch",
+      "interfaces": {
+        "a4-eth1": {
+          "status": "UP",
+          "connected_to": "d4-eth2"
+        },
+        "a4-eth2": {
+          "status": "UP",
+          "connected_to": "d3-eth3"
+        },
+        "a4-eth3": {
+          "status": "UP",
+          "connected_to": "h7-eth0"
+        },
+        "a4-eth4": {
+          "status": "UP",
+          "connected_to": "h8-eth0"
+        }
+      }
+    },
+    "a5": {
+      "type": "switch",
+      "interfaces": {
+        "a5-eth1": {
+          "status": "UP",
+          "connected_to": "d4-eth2"
+        },
+        "a5-eth2": {
+          "status": "UP",
+          "connected_to": "d4-eth3"
+        },
+        "a5-eth3": {
+          "status": "UP",
+          "connected_to": "h9-eth0"
+        },
+        "a5-eth4": {
+          "status": "UP",
+          "connected_to": "h10-eth0"
+        }
+      }
+    },
+    "a6": {
+      "type": "switch",
+      "interfaces": {
+        "a6-eth1": {
+          "status": "UP",
+          "connected_to": "d4-eth2"
+        },
+        "a6-eth2": {
+          "status": "UP",
+          "connected_to": "d5-eth3"
+        },
+        "a6-eth3": {
+          "status": "UP",
+          "connected_to": "h11-eth0"
+        },
+        "a6-eth4": {
+          "status": "UP",
+          "connected_to": "h12-eth0"
+        }
+      }
+    },
+    "dns1": {
+      "type": "server",
+      "subnet": "10.3.0.0/24",
+      "ip": "10.3.0.254",
+      "default_gateway": "10.3.0.1",
+      "interfaces": {
+        "dns1-eth0": {
+          "ip": "10.3.0.254",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c1-eth2"
+        }
+      }
+    },
+    "dns2": {
+      "type": "server",
+      "subnet": "10.3.0.0/24",
+      "ip": "10.3.0.253",
+      "default_gateway": "10.3.0.1",
+      "interfaces": {
+        "dns2-eth0": {
+          "ip": "10.3.0.253",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "c2-eth1"
+        }
+      }
+    },
+    "h1": {
+      "type": "host",
+      "subnet": "10.1.0.0/24",
+      "ip": "10.1.0.11",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.1.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h1-eth0": {
+          "ip": "10.1.0.11",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a1-eth3"
+        }
+      }
+    },
+    "h2": {
+      "type": "host",
+      "subnet": "10.1.0.0/24",
+      "ip": "10.1.0.12",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.1.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h2-eth0": {
+          "ip": "10.1.0.12",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a1-eth4"
+        }
+      }
+    },
+    "h3": {
+      "type": "host",
+      "subnet": "10.1.0.0/24",
+      "ip": "10.1.0.13",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.1.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h3-eth0": {
+          "ip": "10.1.0.13",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a2-eth3"
+        }
+      }
+    },
+    "h4": {
+      "type": "host",
+      "subnet": "10.2.0.0/24",
+      "ip": "10.2.0.14",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.2.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h4-eth0": {
+          "ip": "10.2.0.14",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a2-eth4"
+        }
+      }
+    },
+    "h5": {
+      "type": "host",
+      "subnet": "10.2.0.0/24",
+      "ip": "10.2.0.15",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.2.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h5-eth0": {
+          "ip": "10.2.0.15",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a3-eth3"
+        }
+      }
+    },
+    "h6": {
+      "type": "host",
+      "subnet": "10.2.0.0/24",
+      "ip": "10.2.0.16",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.2.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h6-eth0": {
+          "ip": "10.2.0.16",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a3-eth4"
+        }
+      }
+    },
+    "h7": {
+      "type": "host",
+      "subnet": "10.3.0.0/24",
+      "ip": "10.3.0.17",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.3.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h7-eth0": {
+          "ip": "10.3.0.17",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a4-eth3"
+        }
+      }
+    },
+    "h8": {
+      "type": "host",
+      "subnet": "10.3.0.0/24",
+      "ip": "10.3.0.18",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.3.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h8-eth0": {
+          "ip": "10.3.0.18",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a4-eth4"
+        }
+      }
+    },
+    "h9": {
+      "type": "host",
+      "subnet": "10.3.0.0/24",
+      "ip": "10.3.0.19",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.3.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h9-eth0": {
+          "ip": "10.3.0.19",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a5-eth3"
+        }
+      }
+    },
+    "h10": {
+      "type": "host",
+      "subnet": "10.4.0.0/24",
+      "ip": "10.4.0.20",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.4.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h10-eth0": {
+          "ip": "10.4.0.20",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a5-eth4"
+        }
+      }
+    },
+    "h11": {
+      "type": "host",
+      "subnet": "10.4.0.0/24",
+      "ip": "10.4.0.21",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.4.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h11-eth0": {
+          "ip": "10.4.0.21",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a6-eth3"
+        }
+      }
+    },
+    "h12": {
+      "type": "host",
+      "subnet": "10.4.0.0/24",
+      "ip": "10.4.0.22",
+      "netmask": "255.255.255.0",
+      "default_gateway": "10.4.0.1",
+      "dns_server": "10.3.0.254",
+      "interfaces": {
+        "h12-eth0": {
+          "ip": "10.4.0.22",
+          "mtu": 1500,
+          "status": "UP",
+          "connected_to": "a6-eth4"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "node_a": "gw1",
+      "port_a": "gw1-eth1",
+      "node_b": "c1",
+      "port_b": "c1-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "gw1",
+      "port_a": "gw1-eth2",
+      "node_b": "c2",
+      "port_b": "c2-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "gw1",
+      "port_a": "gw1-eth3",
+      "node_b": "c1",
+      "port_b": "c1-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "gw2",
+      "port_a": "gw2-eth1",
+      "node_b": "c2",
+      "port_b": "c2-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c1",
+      "port_a": "c1-eth3",
+      "node_b": "c2",
+      "port_b": "c2-eth3",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c1",
+      "port_a": "c1-eth4",
+      "node_b": "d1",
+      "port_b": "d1-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c1",
+      "port_a": "c1-eth5",
+      "node_b": "d2",
+      "port_b": "d2-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c1",
+      "port_a": "c1-eth6",
+      "node_b": "d3",
+      "port_b": "d3-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c2",
+      "port_a": "c2-eth4",
+      "node_b": "d2",
+      "port_b": "d2-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c2",
+      "port_a": "c2-eth5",
+      "node_b": "d3",
+      "port_b": "d3-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "c2",
+      "port_a": "c2-eth6",
+      "node_b": "d4",
+      "port_b": "d4-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d1",
+      "port_a": "d1-eth2",
+      "node_b": "a1",
+      "port_b": "a1-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d1",
+      "port_a": "d1-eth3",
+      "node_b": "a2",
+      "port_b": "a2-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d2",
+      "port_a": "d2-eth2",
+      "node_b": "a2",
+      "port_b": "a2-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d2",
+      "port_a": "d2-eth3",
+      "node_b": "a3",
+      "port_b": "a3-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d3",
+      "port_a": "d3-eth2",
+      "node_b": "a3",
+      "port_b": "a3-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d3",
+      "port_a": "d3-eth3",
+      "node_b": "a4",
+      "port_b": "a4-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d4",
+      "port_a": "d4-eth2",
+      "node_b": "a4",
+      "port_b": "a4-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "d4",
+      "port_a": "d4-eth3",
+      "node_b": "a1",
+      "port_b": "a1-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a1",
+      "port_a": "a1-eth2",
+      "node_b": "d1",
+      "port_b": "d1-eth3",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a1",
+      "port_a": "a1-eth3",
+      "node_b": "h1",
+      "port_b": "h1-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a1",
+      "port_a": "a1-eth4",
+      "node_b": "h2",
+      "port_b": "h2-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a2",
+      "port_a": "a2-eth3",
+      "node_b": "h3",
+      "port_b": "h3-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a2",
+      "port_a": "a2-eth4",
+      "node_b": "h4",
+      "port_b": "h4-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a3",
+      "port_a": "a3-eth3",
+      "node_b": "h5",
+      "port_b": "h5-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a3",
+      "port_a": "a3-eth4",
+      "node_b": "h6",
+      "port_b": "h6-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a4",
+      "port_a": "a4-eth3",
+      "node_b": "h7",
+      "port_b": "h7-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a4",
+      "port_a": "a4-eth4",
+      "node_b": "h8",
+      "port_b": "h8-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a5",
+      "port_a": "a5-eth1",
+      "node_b": "d4",
+      "port_b": "d4-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a5",
+      "port_a": "a5-eth2",
+      "node_b": "d4",
+      "port_b": "d4-eth3",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a5",
+      "port_a": "a5-eth3",
+      "node_b": "h9",
+      "port_b": "h9-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a5",
+      "port_a": "a5-eth4",
+      "node_b": "h10",
+      "port_b": "h10-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a6",
+      "port_a": "a6-eth1",
+      "node_b": "d4",
+      "port_b": "d4-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a6",
+      "port_a": "a6-eth3",
+      "node_b": "h11",
+      "port_b": "h11-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "a6",
+      "port_a": "a6-eth4",
+      "node_b": "h12",
+      "port_b": "h12-eth0",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "dns1",
+      "port_a": "dns1-eth0",
+      "node_b": "c1",
+      "port_b": "c1-eth2",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    },
+    {
+      "node_a": "dns2",
+      "port_a": "dns2-eth0",
+      "node_b": "c2",
+      "port_b": "c2-eth1",
+      "delay_ms": 1.5,
+      "loss_pct": 0.0,
+      "status": "UP"
+    }
+  ],
+  "dns_records": {
+    "app.corp.local": "10.3.0.100",
+    "db.internal.local": "10.3.0.101",
+    "auth.corp.local": "10.3.0.254",
+    "api.gateway.local": "10.4.0.50"
+  },
+  "external_endpoints": {
+    "10.4.0.254": {
+      "name": "Corporate-Cloud-Gateway",
+      "base_rtt_ms": 12.0
+    },
+    "8.8.8.8": {
+      "name": "Public-DNS-Primary",
+      "base_rtt_ms": 18.5
+    }
+  }
+}

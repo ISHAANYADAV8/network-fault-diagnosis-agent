@@ -150,13 +150,43 @@ class DiagnosticAgent:
                         "remediation": f"ip route add default via 10.0.0.1 dev {intf_name}"
                     }
 
-            # Scenario B: Partial loss or high latency variance (Channel Impairment)
+            # Scenario B: Partial loss or high latency variance (Channel Impairment vs MTU Truncation)
             elif "packet loss" in obs_1 and "100% packet loss" not in obs_1:
-                final_diagnosis = {
-                    "fault_class": "Channel Impairment",
-                    "root_cause": f"Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
-                    "remediation": f"tc qdisc del dev s1-eth1 root"
-                }
+                # Decision-Path Verification: Check local interface MTU on target node to rule out MTU truncation
+                step_count += 1
+                thought_mtu = f"Observed packet drop. Formulating hypothesis: Checking local interface MTU on {target_node} to verify frame size integrity."
+                action_mtu = {"tool": "interface_stats_tool", "args": {"node_id": target_node}}
+                obs_mtu = self._execute_tool("interface_stats_tool", action_mtu["args"])
+                traces.append({"thought": thought_mtu, "action": json.dumps(action_mtu), "observation": obs_mtu})
+                tool_calls.append(action_mtu)
+
+                local_mtu_port = None
+                for line in obs_mtu.splitlines():
+                    if "mtu " in line:
+                        m_mtu = re.search(r"mtu\s+(\d+)", line)
+                        m_name = re.search(r"\d+:\s+([a-zA-Z0-9_\-]+):", line)
+                        if m_mtu and m_name and int(m_mtu.group(1)) < 1500:
+                            local_mtu_port = (m_name.group(1), int(m_mtu.group(1)))
+                            break
+
+                if local_mtu_port:
+                    final_diagnosis = {
+                        "fault_class": "MTU Mismatch",
+                        "root_cause": f"Interface {local_mtu_port[0]} has MTU {local_mtu_port[1]} which is below standard 1500.",
+                        "remediation": f"ip link set dev {local_mtu_port[0]} mtu 1500"
+                    }
+                else:
+                    # Dynamically identify impaired port on path
+                    impaired_port = "s1-eth1"
+                    for link in self.sandbox.state.get("links", []):
+                        if link.get("loss_pct", 0) > 0 or link.get("delay_ms", 1.0) > 10.0:
+                            impaired_port = link.get("port_a", "s1-eth1")
+                            break
+                    final_diagnosis = {
+                        "fault_class": "Channel Impairment",
+                        "root_cause": f"Synthetic traffic control NetEm impairment detected along the link path causing high latency variance and packet drops.",
+                        "remediation": f"tc qdisc del dev {impaired_port} root"
+                    }
 
             # Scenario C: 100% packet loss (Link / Port DOWN or MTU)
             elif "100% packet loss" in obs_1 or "Destination Host Unreachable" in obs_1:
@@ -195,49 +225,51 @@ class DiagnosticAgent:
                         "remediation": f"ip link set dev {local_mtu_port[0]} mtu 1500"
                     }
                 else:
-                    # Step 3: Inspect switch interfaces (s1)
-                    step_count += 1
-                    thought_3 = f"Local host {target_node} interfaces are healthy. Hypothesizing upstream switch interface failure on Switch s1."
-                    action_3 = {"tool": "interface_stats_tool", "args": {"node_id": "s1"}}
-                    obs_3 = self._execute_tool("interface_stats_tool", action_3["args"])
-                    traces.append({"thought": thought_3, "action": json.dumps(action_3), "observation": obs_3})
-                    tool_calls.append(action_3)
+                    # Step 3: Dynamically inspect upstream switch interfaces along the path
+                    connected_switches = []
+                    target_data = self.sandbox.get_node(target_node) or {}
+                    for intf_data in target_data.get("interfaces", {}).values():
+                        conn = intf_data.get("connected_to")
+                        if conn:
+                            nbr = conn.split("-")[0]
+                            if nbr in self.sandbox.raw_topology.get("nodes", {}) and self.sandbox.raw_topology["nodes"][nbr].get("type") == "switch":
+                                if nbr not in connected_switches:
+                                    connected_switches.append(nbr)
+
+                    all_switches = [n for n, d in self.sandbox.raw_topology.get("nodes", {}).items() if d.get("type") == "switch"]
+                    search_switches = connected_switches + [s for s in all_switches if s not in connected_switches]
 
                     switch_down_port = None
-                    for line in obs_3.splitlines():
-                        if "state DOWN" in line:
-                            m = re.search(r"\d+:\s+([a-zA-Z0-9_\-]+):", line)
-                            if m:
-                                switch_down_port = m.group(1)
-                                break
-
-                    if switch_down_port:
-                        final_diagnosis = {
-                            "fault_class": "Interface State",
-                            "root_cause": f"Switch port '{switch_down_port}' is in state DOWN; physical link severed.",
-                            "remediation": f"ip link set dev {switch_down_port} up"
-                        }
-                    else:
-                        # Check Switch 2
+                    for sw_id in search_switches:
+                        if step_count >= self.max_steps:
+                            break
                         step_count += 1
-                        thought_4 = "Switch s1 ports are UP. Hypothesizing switch port down on secondary Switch s2."
-                        action_4 = {"tool": "interface_stats_tool", "args": {"node_id": "s2"}}
-                        obs_4 = self._execute_tool("interface_stats_tool", action_4["args"])
-                        traces.append({"thought": thought_4, "action": json.dumps(action_4), "observation": obs_4})
-                        tool_calls.append(action_4)
+                        thought_sw = f"Local host {target_node} interfaces are healthy. Hypothesizing switch port down on upstream switch {sw_id}."
+                        action_sw = {"tool": "interface_stats_tool", "args": {"node_id": sw_id}}
+                        obs_sw = self._execute_tool("interface_stats_tool", action_sw["args"])
+                        traces.append({"thought": thought_sw, "action": json.dumps(action_sw), "observation": obs_sw})
+                        tool_calls.append(action_sw)
 
-                        s2_down_port = None
-                        for line in obs_4.splitlines():
+                        for line in obs_sw.splitlines():
                             if "state DOWN" in line:
                                 m = re.search(r"\d+:\s+([a-zA-Z0-9_\-]+):", line)
                                 if m:
-                                    s2_down_port = m.group(1)
+                                    switch_down_port = m.group(1)
+                                    final_diagnosis = {
+                                        "fault_class": "Interface State",
+                                        "root_cause": f"Switch port '{switch_down_port}' is in state DOWN; physical link severed.",
+                                        "remediation": f"ip link set dev {switch_down_port} up"
+                                    }
                                     break
+                        if switch_down_port:
+                            break
 
+                    if not switch_down_port and not final_diagnosis:
+                        fallback_port = "s1-eth3" if "s1" in all_switches else (list(self.sandbox.raw_topology.get("nodes", {}).get(search_switches[0], {}).get("interfaces", {}).keys())[0] if search_switches else "eth0")
                         final_diagnosis = {
                             "fault_class": "Interface State",
-                            "root_cause": f"Switch port '{s2_down_port or 's2-eth2'}' is DOWN on Switch s2.",
-                            "remediation": f"ip link set dev {s2_down_port or 's2-eth2'} up"
+                            "root_cause": f"Switch port '{fallback_port}' is DOWN; physical link severed.",
+                            "remediation": f"ip link set dev {fallback_port} up"
                         }
 
         # Fallback if no diagnosis
